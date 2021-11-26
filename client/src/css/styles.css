@@ -11,15 +11,19 @@
 }
 
 .bordered-box {
-  border: 3px solid lightseagreen;
+  border: 2px solid cornflowerblue;
+  background: cornflowerblue;
+  color: white;
+  font-size: 1.25em;
   min-height: 250px;
   min-width: 250px;
+  margin: 0.5em 0 1em 0;
 }
 
 .flex-col > input {
   min-width: 250px;
 }
 
-.pad-top {
-  padding-top: 1rem;
+.flex-col input {
+  border: 2px solid cornflowerblue;
 }
