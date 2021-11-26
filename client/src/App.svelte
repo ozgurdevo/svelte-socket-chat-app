@@ -1,7 +1,11 @@
 <script lang="ts">
   import { io } from "socket.io-client";
+  import MessageBox from "./comps/MessageBox.svelte";
+  import MessageInput from "./comps/MessageInput.svelte";
+  import NameInput from "./comps/NameInput.svelte";
+  import "./css/styles.css";
+
   export let api: string;
-  let name = "ozgur";
 
   const socket = io(api, { secure: true });
 
@@ -9,24 +13,21 @@
     console.log("client connected");
   });
 
+  socket.on("quit", (data) => {
+    console.log(data);
+  });
+
+  socket.on("receivemsg", (val) => {
+    console.log(val);
+  });
+
+  function onClick() {
+    socket.emit("sendmsg", { res: "hello ozgur" });
+  }
 </script>
 
-<main>
-  <h1>Hello {name}!</h1>
-</main>
-
-<style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: cadetblue;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-</style>
+<div class="flex-col">
+  <NameInput />
+  <MessageBox />
+  <MessageInput />
+</div>
